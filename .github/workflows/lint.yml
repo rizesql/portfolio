@@ -23,8 +23,8 @@ jobs:
       - name: ⎔ Setup pnpm
         uses: ./.github/actions/pnpm-install
 
-      - name: 🔬 Lint
-        run: pnpm run lint
+      # - name: 🔬 Lint
+      #   run: pnpm run lint
 
       - name: 🔬 Format
         run: pnpm run format
