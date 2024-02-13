@@ -6,18 +6,20 @@
   "printWidth": 90,
   "trailingComma": "all",
   "useTabs": true,
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "plugins": ["prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": [".*", "*.json", "*.md", "*.toml", "*.yml"],
       "options": {
-        "useTabs": false
+        "useTabs": false,
+        "trailingComma": "none"
       }
     },
     {
       "files": "*.astro",
       "options": {
-        "parser": "astro"
+        "parser": "astro",
+        "plugins": ["prettier-plugin-astro"]
       }
     }
   ]

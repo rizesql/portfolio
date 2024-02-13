@@ -1,0 +1,31 @@
+@import "fonts/overused-grotesk.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+background - #E7E3DE
+foreground - #313130
+subtle foreground - #908E87
+surface - #F0ECE7
+hovered surface - #EEECE6
+active surface - 
+danger - #EB4D4B
+success - #61D35F
+*/
+
+@layer base {
+	:root {
+		--font-overused-grotesk: Overused Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI,
+			Helvetica, Arial, sans-serif;
+
+		--background: #e7e3de;
+		--foreground: #313130;
+		--foreground-subtle: #908e87;
+		--surface: #f0ece7;
+		--surface-alternative: #eeece6;
+
+		--brand: #255df6;
+	}
+}
