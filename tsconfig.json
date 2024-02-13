@@ -1,3 +1,14 @@
 {
-  "extends": "astro/tsconfigs/strictest"
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    // "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+    // "jsxImportSource": "react"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*", ".eslintrc.cjs"]
 }
