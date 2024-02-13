@@ -12,37 +12,16 @@ jobs:
     name: ⬣ ESLint
     runs-on: ubuntu-22.04
     steps:
-      - name: setup
-        uses: ./.github/workflows/setup.yml
-      #   - name: ⬇️ Checkout repo
-      #     uses: actions/checkout@v3
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
 
-      #   - name: ⎔ Setup node
-      #     uses: actions/setup-node@v3
-      #     with:
-      #       node-version: 20
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
-      #   - name: ⎔ Setup pnpm
-      #     uses: pnpm/action-setup@v3
-      #     with:
-      #       version: 8
-      #       run_install: false
-
-      #   - name: Get pnpm store directory
-      #     shell: bash
-      #     run: |
-      #       echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      #   - uses: actions/cache@v3
-      #     name: Setup pnpm cache
-      #     with:
-      #       path: ${{ env.STORE_PATH }}
-      #       key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-      #       restore-keys: |
-      #         ${{ runner.os }}-pnpm-store-
-
-      #   - name: 📥 Install dependencies
-      #     run: pnpm install
+      - name: ⎔ Setup pnpm
+        uses: ./.github/actions/pnpm-install
 
       - name: 🔬 Lint
         run: pnpm run lint
