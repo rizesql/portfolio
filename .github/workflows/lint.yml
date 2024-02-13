@@ -30,3 +30,6 @@ jobs:
 
       - name: 🔬 Lint
         run: pnpm run lint
+
+      - name: 🔬 Format
+        run: pnpm run format

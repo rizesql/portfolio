@@ -107,5 +107,5 @@
       "config": "./tailwind.config.cjs",
     },
   },
-  "ignorePatterns": ["**/.astro/**"],
+  "ignorePatterns": ["**/.astro/**", "**/dist/**"],
 }
