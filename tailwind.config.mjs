@@ -13,6 +13,9 @@ export default {
 			fontFamily: {
 				"overused-grotesk": "var(--font-overused-grotesk)",
 			},
+			screens: {
+				touch: { raw: "(pointer: coarse)" },
+			},
 		},
 	},
 	plugins: [],
