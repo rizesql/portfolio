@@ -1,0 +1,41 @@
+---
+import { type HTMLAttributes } from "astro/types";
+
+import type { SEOProps } from "~/components/seo.astro";
+import Seo from "~/components/seo.astro";
+import "~/styles/base.css";
+
+export type Props = HTMLAttributes<"html"> & { seo?: SEOProps | undefined };
+
+const {
+	seo = {},
+	class: className = "",
+	"class:list": classList = [],
+
+	...props
+} = Astro.props;
+---
+
+<html lang="en" class:list={["font-overused-grotesk", className, classList]} {...props}>
+	<head>
+		<meta charset="utf-8" />
+		<!-- TODO change favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+
+		<Seo {...seo} />
+
+		<link
+			rel="preload"
+			href="/fonts/OverusedGrotesk-VF.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+	</head>
+
+	<body class="h-screen">
+		<slot />
+	</body>
+</html>

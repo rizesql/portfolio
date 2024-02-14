@@ -1,0 +1,39 @@
+---
+import { appInfo } from "~/lib/app-info";
+import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "~/lib/seo/og";
+
+export type SEOProps = {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	ogImage?: string;
+};
+
+export type Props = SEOProps;
+
+const props = Astro.props;
+
+const rawTitle = props.title?.trim();
+const title = rawTitle ? `${rawTitle} - ${appInfo.title}` : appInfo.title;
+
+const description = props.description ?? appInfo.description;
+const keywords = props.keywords ?? appInfo.keywords;
+
+const ogImage = props.ogImage ?? "";
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="og:type" content="website" />
+<meta name="og:title" content={title} />
+<meta name="og:description" content={description} />
+<meta name="og:image" content={ogImage} />
+<meta name="og:image:width" content={`${OG_IMAGE_WIDTH}`} />
+<meta name="og:image:height" content={`${OG_IMAGE_HEIGHT}`} />

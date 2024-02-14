@@ -1,0 +1,15 @@
+---
+import BaseLayout, { type Props as BaseProps } from "./base.astro";
+
+import Navbar from "~/components/navbar.astro";
+
+export type Props = BaseProps;
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+	<Navbar />
+
+	<slot />
+</BaseLayout>
