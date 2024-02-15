@@ -1,7 +1,80 @@
 ---
+import { Link, Section, vstack } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
+import { cx } from "~/lib/cx";
 ---
 
 <MainLayout class="bg-background text-foreground">
-	<h1>hello world</h1>
+	<Section.Root first>
+		<Section.Header class="text-sm">
+			<h2>Ştefan Rizescu</h2>
+			<p class="font-normal">Fullstack developer</p>
+		</Section.Header>
+
+		<Section.SideContent class="col-span-1 col-start-7 gap-0 text-sm">
+			<Link.External href="https://www.github.com/rizesql" class="[&>svg]:size-4">
+				Github
+			</Link.External>
+			<Link.External href="https://twitter.com/rizesql" class="[&>svg]:size-4">
+				Twitter / X
+			</Link.External>
+		</Section.SideContent>
+	</Section.Root>
+
+	<Section.Root>
+		<Section.Header>
+			<h2>About me</h2>
+		</Section.Header>
+
+		<Section.SideContent>
+			<h1>
+				I'm Ştefan, also known as @rizesql, a Bucharest-based technologist and internet
+				enjoyer
+			</h1>
+		</Section.SideContent>
+
+		<div class="col-span-full overflow-hidden lg:h-screen">
+			<img src="/hero.png" alt="" />
+		</div>
+
+		<div class="col-[2/span_9]">
+			<p class="text-4xl [text-wrap:balance]">
+				I am a freshman at the University of Bucharest in the department of Computer
+				Science. Currently, I focus on developing my skills in fullstack development, and
+				I strive to create awesome and performant experiences in this area. My work is
+				constantly evolving and I remain updated to the current state of the art.
+			</p>
+		</div>
+	</Section.Root>
+
+	<Section.Root>
+		<Section.Header>
+			<h2>Lorem ipsum</h2>
+		</Section.Header>
+
+		<Section.SideContent class={cx(vstack(), "gap-8")}>
+			<h2 class="text-2xl [text-wrap:balance]">
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis
+				autem eaque tenetur tempore? Atque totam et quam quo deleniti voluptas laudantium.
+				Mollitia id quaerat odio, nulla animi at molestias?
+			</h2>
+			<h2 class="text-2xl [text-wrap:balance]">
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis
+				autem eaque tenetur tempore? Atque totam et quam quo deleniti voluptas laudantium.
+				Mollitia id quaerat odio, nulla animi at molestias?
+			</h2>
+		</Section.SideContent>
+
+		<div class="col-span-full col-start-2">
+			<p class="text-4xl [text-wrap:balance]">
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis
+				autem eaque tenetur tempore? Atque totam et quam quo deleniti voluptas laudantium.
+				Mollitia id quaerat odio, nulla animi at molestias?
+			</p>
+		</div>
+	</Section.Root>
+
+	<div class="col-span-full h-screen bg-red-200"></div>
+
+	<footer>footer</footer>
 </MainLayout>
