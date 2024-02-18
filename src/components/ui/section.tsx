@@ -1,3 +1,5 @@
+export * as Section from "./section";
+
 import { splitProps, type ComponentProps } from "solid-js";
 
 import { cva } from "~/lib/cx";
@@ -13,12 +15,14 @@ export const section = {
 		},
 	}),
 	header: cva({
-		base: "top-5 col-[4/span_2] h-min font-medium lg:sticky",
+		base: "top-5 col-start-1 h-min items-end font-medium lg:sticky lg:col-[4/span_2] lg:text-white lg:mix-blend-exclusion",
 	}),
-	sideContent: cva({ base: "col-[7/-1] text-4xl font-medium [text-wrap:balance]" }),
+	sideContent: cva({
+		base: "col-span-full col-start-2 text-4xl font-medium [text-wrap:balance] lg:col-start-7",
+	}),
 };
 
-function Root(props: ComponentProps<"section"> & { first?: boolean }) {
+export function Root(props: ComponentProps<"section"> & { first?: boolean }) {
 	const [local, other] = splitProps(props, ["class", "first"]);
 
 	return (
@@ -29,7 +33,7 @@ function Root(props: ComponentProps<"section"> & { first?: boolean }) {
 	);
 }
 
-function Header(props: ComponentProps<"header">) {
+export function Header(props: ComponentProps<"header">) {
 	const [local, other] = splitProps(props, ["class"]);
 	return (
 		<header class={section.header(local)} {...other}>
@@ -38,7 +42,7 @@ function Header(props: ComponentProps<"header">) {
 	);
 }
 
-function SideContent(props: ComponentProps<"div">) {
+export function SideContent(props: ComponentProps<"div">) {
 	const [local, other] = splitProps(props, ["class"]);
 
 	return (
@@ -47,5 +51,3 @@ function SideContent(props: ComponentProps<"div">) {
 		</div>
 	);
 }
-
-export const Section = { Root, Header, SideContent };

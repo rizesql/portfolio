@@ -1,18 +1,18 @@
 ---
 import { Logo } from "./logo";
-import { Link, center, hstack, touchable } from "./ui";
+import { Link, center, touchable } from "./ui";
 
 import { cx } from "~/lib/cx";
 ---
 
-<header class={cx(hstack({ align: "center", justify: "between" }), "px-4 pt-4 lg:px-6")}>
+<div class="fixed left-0 top-0 z-10 pl-4 pt-4 text-white !mix-blend-difference lg:px-6">
 	<Logo />
-	<nav>
-		<ul class={cx(center(), "gap-4")}>
-			<Link.Nav href="/about" unstyled class={cx(touchable(), center())}>about</Link.Nav>
-			<Link.Nav href="/writing" unstyled class={cx(touchable(), center())}>
-				writing
-			</Link.Nav>
-		</ul>
-	</nav>
-</header>
+</div>
+<nav class="fixed right-0 top-0 z-10 pr-4 pt-4 text-white !mix-blend-difference lg:px-6">
+	<ul class={cx(center(), "gap-4")}>
+		<Link.Nav href="/about" unstyled class={cx(touchable(), center())}>about</Link.Nav>
+		<Link.Nav href="/writing" unstyled class={cx(touchable(), center())}>
+			writing
+		</Link.Nav>
+	</ul>
+</nav>

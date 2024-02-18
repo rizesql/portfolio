@@ -1,33 +1,37 @@
 ---
-import { Link, Section, vstack } from "~/components/ui";
+import { Link, Section, Separator, subgrid, touchable, vstack } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
+import { appInfo } from "~/lib/app-info";
 import { cx } from "~/lib/cx";
 ---
 
 <MainLayout class="bg-background text-foreground">
 	<Section.Root first>
 		<Section.Header class="text-sm">
-			<h2>Ştefan Rizescu</h2>
+			<h2>{appInfo.title}</h2>
 			<p class="font-normal">Fullstack developer</p>
 		</Section.Header>
 
-		<Section.SideContent class="col-span-1 col-start-7 gap-0 text-sm">
-			<Link.External href="https://www.github.com/rizesql" class="[&>svg]:size-4">
-				Github
-			</Link.External>
-			<Link.External href="https://twitter.com/rizesql" class="[&>svg]:size-4">
-				Twitter / X
-			</Link.External>
+		<Section.SideContent
+			class="col-span-3 col-start-7 gap-0 text-sm touch:flex touch:gap-4"
+		>
+			{
+				appInfo.social.map((social) => (
+					<Link.External href={social.href} class={cx(touchable(), "[&>svg]:size-4")}>
+						{social.label}
+					</Link.External>
+				))
+			}
 		</Section.SideContent>
 	</Section.Root>
 
-	<Section.Root>
+	<Section.Root class="mt-32">
 		<Section.Header>
-			<h2>About me</h2>
+			<h2>Hi there!</h2>
 		</Section.Header>
 
 		<Section.SideContent>
-			<h1>
+			<h1 class="text-5xl">
 				I'm Ştefan, also known as @rizesql, a Bucharest-based technologist and internet
 				enjoyer
 			</h1>
@@ -37,7 +41,7 @@ import { cx } from "~/lib/cx";
 			<img src="/hero.png" alt="" />
 		</div>
 
-		<div class="col-[2/span_9]">
+		<div class="col-span-full lg:col-[2/span_9]">
 			<p class="text-4xl [text-wrap:balance]">
 				I am a freshman at the University of Bucharest in the department of Computer
 				Science. Currently, I focus on developing my skills in fullstack development, and
@@ -49,10 +53,10 @@ import { cx } from "~/lib/cx";
 
 	<Section.Root>
 		<Section.Header>
-			<h2>Lorem ipsum</h2>
+			<h2>My work</h2>
 		</Section.Header>
 
-		<Section.SideContent class={cx(vstack(), "gap-8")}>
+		<Section.SideContent class={cx(vstack(), "gap-8 font-normal")}>
 			<h2 class="text-2xl [text-wrap:balance]">
 				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis
 				autem eaque tenetur tempore? Atque totam et quam quo deleniti voluptas laudantium.
@@ -65,12 +69,54 @@ import { cx } from "~/lib/cx";
 			</h2>
 		</Section.SideContent>
 
-		<div class="col-span-full col-start-2">
+		<div class="col-span-full lg:col-start-2">
 			<p class="text-4xl [text-wrap:balance]">
 				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis
 				autem eaque tenetur tempore? Atque totam et quam quo deleniti voluptas laudantium.
 				Mollitia id quaerat odio, nulla animi at molestias?
 			</p>
+		</div>
+
+		<div class={cx(subgrid())}>
+			<div class={"relative col-span-full hidden grid-cols-subgrid md:grid"}>
+				<div class="hidden h-14 w-full lg:col-[1/span_1] lg:block"></div>
+				<div class="col-[1/span_2] lg:col-[2/span_5]">Focus</div>
+				<div class="col-[3/span_2] lg:col-[7/span_5]">Experience</div>
+				<Separator class="lg:col-start-1" fullScreen />
+			</div>
+
+			<div
+				class={cx(
+					vstack(),
+					"col-[1/span_2] lg:col-[2/span_5] text-2xl gap-4 font-medium mb-32 lg:mb-0",
+				)}
+			>
+				<div class="w-full md:hidden">
+					<div class="text-base font-normal">Focus</div>
+					<Separator fullScreen />
+				</div>
+
+				<p>Item one</p>
+				<p>Item two</p>
+				<p>Item three</p>
+				<p>Item four</p>
+				<p>Item five</p>
+				<p>Item six</p>
+			</div>
+
+			<div class="col-[3/span_2] grid grid-cols-2 lg:col-[7/span_5]">
+				<div class="col-span-full w-full md:hidden">
+					<div class="text-base font-normal">Experience</div>
+					<Separator fullScreen />
+				</div>
+
+				<p>Item one</p>
+				<p>Item two</p>
+				<p>Item three</p>
+				<p>Item four</p>
+				<p>Item five</p>
+				<p>Item six</p>
+			</div>
 		</div>
 	</Section.Root>
 
