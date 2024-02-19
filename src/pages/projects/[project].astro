@@ -1,0 +1,93 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+import { Link, Section, touchable } from "~/components/ui";
+import MainLayout from "~/layouts/main.astro";
+import { appInfo } from "~/lib/app-info";
+import { cx } from "~/lib/cx";
+
+export const getStaticPaths = (async () => {
+	const projects = await getCollection("projects");
+
+	return projects.map((project) => {
+		return {
+			params: { project: project.slug },
+			props: { project },
+		};
+	});
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+
+// prettier-ignore
+const foreground = 
+	project.data.foreground === "dark" ? "var(--base-foreground)" : 
+	project.data.foreground === "light" ? "var(--base-background)" : 
+	project.data.foreground;
+
+const { Content, headings } = await project.render();
+---
+
+<MainLayout
+	style={{
+		"--set-background": project.data.color,
+		"--set-foreground": foreground,
+		"--invert-nav": project.data.invertHeading ? 100 : 0,
+	}}
+>
+	<Section.Root first>
+		<Section.Header class="text-sm">
+			<h2>Projects</h2>
+			<p class="font-normal">Portfolio case studies</p>
+		</Section.Header>
+
+		<Section.SideContent class="col-[7/span_3] gap-0 text-sm touch:flex touch:gap-4">
+			{
+				appInfo.social.map((social) => (
+					<Link.External href={social.href} class={cx(touchable(), "[&>svg]:size-4")}>
+						{social.label}
+					</Link.External>
+				))
+			}
+		</Section.SideContent>
+	</Section.Root>
+
+	<Section.Root class="mt-32">
+		<Section.Header class="sticky text-sm">
+			<h2>{project.data.name}</h2>
+			<p class="font-normal">{project.data.subtitle}</p>
+		</Section.Header>
+
+		<Section.SideContent class="text-xl">
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam, quidem expedita at
+			provident praesentium illo corrupti quasi autem nihil tempore natus iure unde modi,
+			ipsa porro amet cum cupiditate molestiae.
+		</Section.SideContent>
+
+		<div
+			class={cx(
+				"prose col-[4/span_6] max-w-full prose-foreground",
+				"prose-headings:scroll-m-20 prose-headings:font-medium prose-code:font-zed-mono",
+			)}
+		>
+			<Content />
+		</div>
+		<aside class="relative col-span-2">
+			<div class="sticky top-[20vh]">
+				<h3 class="text-2xl font-medium">Table of contents</h3>
+				<ul>
+					{
+						headings.map((h) => (
+							<li>
+								<Link.Nav href={`#${h.slug}`} unstyled>
+									{h.text}
+								</Link.Nav>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</aside>
+	</Section.Root>
+</MainLayout>

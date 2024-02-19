@@ -1,4 +1,5 @@
 @import "fonts/overused-grotesk.css";
+@import "fonts/zed-mono.css";
 
 @tailwind base;
 @tailwind components;
@@ -19,9 +20,15 @@ success - #61D35F
 	:root {
 		--font-overused-grotesk: Overused Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI,
 			Helvetica, Arial, sans-serif;
+		--font-zed-mono: Zed Mono, monospace;
 
-		--background: #e7e3de;
-		--foreground: #313130;
+		/* --base-background: #255df6; */
+		--base-background: #e7e3de;
+		--background: var(--set-background, var(--base-background));
+		--base-foreground: #313130;
+		/* --base-foreground: #255df6; */
+		--foreground: var(--set-foreground, var(--base-foreground));
+		/* --foreground: ; */
 		--foreground-subtle: #908e87;
 		--surface: #f0ece7;
 		--surface-alternative: #eeece6;

@@ -1,6 +1,6 @@
 export * as Section from "./section";
 
-import { splitProps, type ComponentProps } from "solid-js";
+import { Show, splitProps, type ComponentProps } from "solid-js";
 
 import { cva } from "~/lib/cx";
 
@@ -15,10 +15,10 @@ export const section = {
 		},
 	}),
 	header: cva({
-		base: "top-5 col-start-1 h-min items-end font-medium lg:sticky lg:col-[4/span_2] lg:text-white lg:mix-blend-exclusion",
+		base: "top-5 col-start-1 h-min items-end font-medium mix-blend-exclusion invert-[var(--invert-nav)] lg:sticky lg:col-[4/span_2]",
 	}),
 	sideContent: cva({
-		base: "col-span-full col-start-2 text-4xl font-medium [text-wrap:balance] lg:col-start-7",
+		base: "col-span-full col-start-2 text-balance text-4xl font-medium lg:col-start-7",
 	}),
 };
 
@@ -28,7 +28,10 @@ export function Root(props: ComponentProps<"section"> & { first?: boolean }) {
 	return (
 		<section class={section.root(local)} {...other}>
 			{props.children}
-			{props.first ? null : <div class="col-span-full hidden h-8 lg:block" />}
+
+			<Show when={!props.first}>
+				<div class="col-span-full hidden h-1 lg:block" />
+			</Show>
 		</section>
 	);
 }

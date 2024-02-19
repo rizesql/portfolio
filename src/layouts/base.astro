@@ -1,5 +1,6 @@
 ---
 import { type HTMLAttributes } from "astro/types";
+import { ViewTransitions } from "astro:transitions";
 
 import type { SEOProps } from "~/components/seo.astro";
 import Seo from "~/components/seo.astro";
@@ -16,7 +17,11 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en" class:list={["font-overused-grotesk", className, classList]} {...props}>
+<html
+	lang="en"
+	class:list={["font-overused-grotesk scroll-smooth", className, classList]}
+	{...props}
+>
 	<head>
 		<meta charset="utf-8" />
 		<!-- TODO change favicon -->
@@ -33,6 +38,8 @@ const {
 			type="font/woff2"
 			crossorigin
 		/>
+
+		<ViewTransitions />
 	</head>
 
 	<body class="h-screen">

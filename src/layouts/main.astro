@@ -10,7 +10,14 @@ export type Props = BaseProps;
 const { class: className, "class:list": classList, ...props } = Astro.props;
 ---
 
-<BaseLayout class={cx("px-4 lg:px-6 relative w-screen", className, classList)} {...props}>
+<BaseLayout
+	class={cx(
+		"px-4 lg:px-6 relative w-screen bg-background text-foreground",
+		className,
+		classList,
+	)}
+	{...props}
+>
 	<Navbar />
 
 	<main class={main()}>
