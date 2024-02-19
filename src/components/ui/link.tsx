@@ -1,3 +1,5 @@
+export * as Link from "./link";
+
 import { Link as BaseLink } from "@kobalte/core";
 import { splitProps } from "solid-js";
 
@@ -36,7 +38,7 @@ export const link = {
 	},
 } as const;
 
-function Nav(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
+export function Nav(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
 	const [local, others] = splitProps(props, ["class", "unstyled"]);
 
 	return (
@@ -46,7 +48,7 @@ function Nav(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
 	);
 }
 
-function External(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
+export function External(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
 	const [local, others] = splitProps(props, ["class", "unstyled"]);
 
 	return (
@@ -64,5 +66,3 @@ function External(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
 		</BaseLink.Root>
 	);
 }
-
-export const Link = { External, Nav };

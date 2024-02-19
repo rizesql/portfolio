@@ -1,30 +1,14 @@
 ---
-import { Link, Section, subgrid, touchable } from "~/components/ui";
+import { Section, subgrid } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
 import { appInfo } from "~/lib/app-info";
-import { cx } from "~/lib/cx";
 ---
 
 <MainLayout class="bg-[#1E1E2C] [--set-foreground:#a6adc8]">
-	<Section.Root first>
-		<Section.Header class="text-sm">
-			<h2>Writing</h2>
-			<p class="font-normal">Some thoughts</p>
-		</Section.Header>
-
-		<Section.SideContent class="col-[7/span_3] gap-0 text-sm touch:flex touch:gap-4">
-			{
-				appInfo.social.map((social) => (
-					<Link.External href={social.href} class={cx(touchable(), "[&>svg]:size-4")}>
-						{social.label}
-					</Link.External>
-				))
-			}
-			<Link.External href="/rss" class={cx(touchable(), "[&>svg]:size-4")}>
-				RSS feed
-			</Link.External>
-		</Section.SideContent>
-
+	<Section.First
+		header={{ title: "Writing", subtitle: "Some thoughts" }}
+		links={[...appInfo.social, { href: "/rss", label: "RSS feed" }]}
+	>
 		<div class="col-[3/-2] text-balance">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus optio neque
 			ipsa a excepturi ipsam maxime quas beatae nostrum perferendis. Earum esse laudantium
@@ -42,7 +26,7 @@ import { cx } from "~/lib/cx";
 			illum aliquid hic accusamus perferendis laboriosam odit vero architecto aperiam
 			rerum assumenda numquam deserunt.
 		</div>
-	</Section.Root>
+	</Section.First>
 
 	<Section.Root>
 		<Section.Header><h2>lorem</h2></Section.Header>

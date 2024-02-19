@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
-import { Link, Section, touchable } from "~/components/ui";
+import { Link, Section } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
 import { appInfo } from "~/lib/app-info";
 import { cx } from "~/lib/cx";
@@ -36,22 +36,10 @@ const { Content, headings } = await project.render();
 		"--invert-nav": project.data.invertHeading ? 100 : 0,
 	}}
 >
-	<Section.Root first>
-		<Section.Header class="text-sm">
-			<h2>Projects</h2>
-			<p class="font-normal">Portfolio case studies</p>
-		</Section.Header>
-
-		<Section.SideContent class="col-[7/span_3] gap-0 text-sm touch:flex touch:gap-4">
-			{
-				appInfo.social.map((social) => (
-					<Link.External href={social.href} class={cx(touchable(), "[&>svg]:size-4")}>
-						{social.label}
-					</Link.External>
-				))
-			}
-		</Section.SideContent>
-	</Section.Root>
+	<Section.First
+		header={{ title: "Projects", subtitle: "Case studies" }}
+		links={appInfo.social}
+	/>
 
 	<Section.Root class="mt-32">
 		<Section.Header class="sticky text-sm">
