@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+
+import { WorkCard } from "./experience-card";
+
+import { Separator } from "~/components/ui";
+import { sort } from "~/lib/sort";
+
+const priorExperience = await getCollection("experience").then(sort.dataByPeriod);
+---
+
+<div class="col-[3/span_2] grid gap-8 lg:col-[7/span_5] lg:grid-cols-2">
+	<div class="col-span-full w-full md:hidden">
+		<div class="text-base font-normal">Experience</div>
+		<Separator fullScreen />
+	</div>
+
+	{priorExperience.map((job) => <WorkCard slug={job.slug} {...job.data} />)}
+</div>

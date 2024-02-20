@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+import { Project } from "./project";
+
+import { Section, subgrid } from "~/components/ui";
+import { cx } from "~/lib/cx";
+import { sort } from "~/lib/sort";
+
+const projects = await getCollection("projects").then(sort.dataByOrder);
+
+const layout = [
+	"col-span-8 row-span-2",
+	"col-span-4 row-span-1",
+	"col-span-4 row-span-1",
+	"col-span-4 row-span-2",
+	"col-span-8 row-span-2",
+	"col-span-full row-span-2",
+];
+---
+
+<Section.Root>
+	<Section.Header>
+		<h2>Projects</h2>
+	</Section.Header>
+
+	<Section.SideContent>
+		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, error incidunt.
+		Explicabo dolorem aut accusantium provident iste maiores mollitia minima ullam dolor,
+		ea labore illum voluptates voluptate hic voluptas dolore?
+	</Section.SideContent>
+
+	<div class={cx(subgrid(), "min-h-screen gap-x-8 gap-y-8")}>
+		{
+			projects.map((project, idx) => (
+				<Project
+					name={project.data.name}
+					class={layout[idx]}
+					color={project.data.color}
+					href={`/projects/${project.slug}`}
+				/>
+			))
+		}
+	</div>
+</Section.Root>

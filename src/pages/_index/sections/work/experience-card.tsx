@@ -1,31 +1,40 @@
+import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
 import { Show, splitProps, type ComponentProps } from "solid-js";
-import { z } from "zod";
 
 import { Icon, Link, center, hstack, touchable, vstack } from "~/components/ui";
 import { cx } from "~/lib/cx";
+import { isPeriod, type Period } from "~/lib/period";
 
-export type WorkCardProps = ComponentProps<"article"> & {
-	name: string;
-	/**
-	 * Represents either a period between two dates in format `year-month`, or just a year.
-	 *
-	 * @example
-	 *
-	 * ```tsx
-	 * const period: Period = {
-	 *  start: new Date("2023-02"),
-	 *  end: new Date("2023-05")
-	 * };
-	 * const year: Period = 2023;
-	 * ```
-	 */
-	period: Period | number;
-	subtitle: string;
-};
+export type WorkCardProps = ComponentProps<"article"> &
+	CollectionEntry<"experience">["data"] & { slug: string };
+// & {
+// name: string;
+// /**
+//  * Represents either a period between two dates in format `year-month`, or just a year.
+//  *
+//  * @example
+//  *
+//  * ```tsx
+//  * const period: Period = {
+//  *  start: new Date("2023-02"),
+//  *  end: new Date("2023-05")
+//  * };
+//  * const year: Period = 2023;
+//  * ```
+//  */
+// period: Period | number;
+// subtitle: string;
+// };
 
 export function WorkCard(props: WorkCardProps) {
-	const [local, other] = splitProps(props, ["name", "period", "subtitle", "class"]);
+	const [local, other] = splitProps(props, [
+		"name",
+		"period",
+		"subtitle",
+		"class",
+		"slug",
+	]);
 
 	return (
 		<article class={cx(vstack(), "gap-2 py-2 lg:py-0", local.class)} {...other}>
@@ -46,7 +55,7 @@ export function WorkCard(props: WorkCardProps) {
 			<p class="text-balance">{local.subtitle}</p>
 
 			<Link.Nav
-				href="/work/upriver-technologies"
+				href={`/work/${local.slug}`}
 				class={cx(hstack(), center(), touchable(), "group gap-2")}
 			>
 				<span>Read more</span>
@@ -83,14 +92,3 @@ function Interval(props: { period: Period | number }) {
 		</Show>
 	);
 }
-
-const period = z.object({
-	start: z.date(),
-	end: z.date(),
-});
-
-type Period = z.infer<typeof period>;
-
-const isPeriod = (value: unknown): value is Period => {
-	return period.safeParse(value).success;
-};

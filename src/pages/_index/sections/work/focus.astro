@@ -1,0 +1,24 @@
+---
+import { getEntry } from "astro:content";
+
+import { Separator, vstack } from "~/components/ui";
+import { cx } from "~/lib/cx";
+
+const focus = await getEntry("focus", "focus");
+---
+
+<article
+	class={cx(
+		vstack(),
+		"col-[1/span_2] lg:col-[2/span_5] text-2xl gap-4 font-medium mb-32 lg:mb-0",
+	)}
+>
+	<header class="w-full md:hidden">
+		<h2 class="text-base font-normal">Focus</h2>
+		<Separator fullScreen />
+	</header>
+
+	<ul class="first:mt-6 first:lg:mt-0">
+		{focus.data.focus.map((it) => <li>{it}</li>)}
+	</ul>
+</article>
