@@ -55,6 +55,19 @@ export default {
 					},
 				},
 			},
+			animation: {
+				"fade-in": "fade-in 980ms ease-out 500ms 1 normal both",
+			},
+			keyframes: {
+				"fade-in": {
+					"0%": {
+						opacity: 0,
+					},
+					"100%": {
+						opacity: 1,
+					},
+				},
+			},
 		},
 	},
 	future: {

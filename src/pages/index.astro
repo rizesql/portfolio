@@ -15,17 +15,29 @@ import { appInfo } from "~/lib/app-info";
 
 	<Section.Root class="mt-32">
 		<Section.Header>
-			<h2>Hi there!</h2>
+			<h2 class="animate-fade-in will-change-[opacity] [animation-delay:300ms]">
+				Hi there!
+			</h2>
 		</Section.Header>
 
 		<Section.SideContent>
 			<h1 class="text-5xl">
-				I'm Ştefan, also known as @rizesql, a Bucharest-based technologist and internet
-				enjoyer
+				{
+					"I'm Ştefan, also known as @rizesql, a Bucharest-based technologist and internet enjoyer"
+						.split("")
+						.map((c, idx) => {
+							return (
+								// prettier-ignore
+								<span class="animate-fade-in will-change-[opacity]" style={{animationDelay: `${350 + 10 * idx}ms`}}>{c}</span>
+							);
+						})
+				}
 			</h1>
 		</Section.SideContent>
 
-		<div class="col-span-full overflow-hidden lg:h-screen">
+		<div
+			class="col-span-full animate-fade-in overflow-hidden will-change-[opacity] lg:h-screen"
+		>
 			<img src="/hero.png" alt="" />
 		</div>
 
