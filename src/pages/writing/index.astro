@@ -1,41 +1,36 @@
 ---
-import { Section, subgrid } from "~/components/ui";
+import { Link, Section, subgrid, vstack } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
 import { appInfo } from "~/lib/app-info";
+import { cx } from "~/lib/cx";
 ---
 
-<MainLayout class="bg-[#1E1E2C] [--set-foreground:#a6adc8]">
+<MainLayout class="relative bg-[#1E1E2C] [--set-foreground:#a6adc8]">
 	<Section.First
-		header={{ title: "Writing", subtitle: "Some thoughts" }}
+		header={{ name: "Writing", subtitle: "Some thoughts" }}
 		links={[...appInfo.social, { href: "/rss", label: "RSS feed" }]}
 	>
-		<div class="col-[3/-2] text-balance">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus optio neque
-			ipsa a excepturi ipsam maxime quas beatae nostrum perferendis. Earum esse laudantium
-			sed molestiae nam neque porro aliquam praesentium. Lorem ipsum, dolor sit amet
-			consectetur adipisicing elit. Quis sequi suscipit ipsa illo, nisi, culpa minima
-			illum aliquid hic accusamus perferendis laboriosam odit vero architecto aperiam
-			rerum assumenda numquam deserunt.
-		</div>
+		<aside class="col-[2/span_3]">
+			<ul class={cx(vstack(), "gap-2")}>
+				{
+					["All", "Technical", "Thoughts", "Roadmap"].map((it) => (
+						<li class="font-medium">
+							<Link.Nav href={`/writing/${it.toLowerCase()}`}>{it}</Link.Nav>
+						</li>
+					))
+				}
+			</ul>
+		</aside>
 
-		<div class="col-[3/-2] text-balance">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus optio neque
-			ipsa a excepturi ipsam maxime quas beatae nostrum perferendis. Earum esse laudantium
-			sed molestiae nam neque porro aliquam praesentium. Lorem ipsum, dolor sit amet
-			consectetur adipisicing elit. Quis sequi suscipit ipsa illo, nisi, culpa minima
-			illum aliquid hic accusamus perferendis laboriosam odit vero architecto aperiam
-			rerum assumenda numquam deserunt.
-		</div>
+		<Section.SideContent>
+			Brain dumps, explorations, thoughts, roadmaps and how-to guides. I write about
+			different topics, such as programming, backend systems, my work process, and
+			user/dev experience.
+		</Section.SideContent>
 	</Section.First>
 
 	<Section.Root>
-		<Section.Header><h2>lorem</h2></Section.Header>
-
-		<Section.SideContent>
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo vero sed alias omnis
-			repudiandae veritatis fugiat eius vel. Expedita quaerat ipsum nobis dignissimos?
-			Quaerat fugit nihil neque ea distinctio soluta.
-		</Section.SideContent>
+		<Section.Header><h2>All articles</h2></Section.Header>
 
 		<div class="col-span-full overflow-hidden lg:h-screen">
 			<img src="/hero.png" alt="" />

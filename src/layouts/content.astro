@@ -1,0 +1,58 @@
+---
+import type { Render } from "astro:content";
+
+import MainLayout, { type Props as MainProps } from "./main.astro";
+
+import { Link, Section } from "~/components/ui";
+import type { Content } from "~/content/base-content";
+import { appInfo } from "~/lib/app-info";
+import { cx } from "~/lib/cx";
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+export interface Props extends MainProps {
+	content: Content;
+	render: Awaited<Render[".mdx"]>;
+}
+
+const { render, class: className = "", content, ...props } = Astro.props;
+---
+
+<MainLayout class={className} {...props}>
+	<Section.First header={content} links={appInfo.social} />
+
+	<Section.Root class="mt-32">
+		<Section.Header class="text-sm lg:sticky">
+			<slot name="header" />
+		</Section.Header>
+
+		<Section.SideContent class="text-xl">
+			{content.description}
+		</Section.SideContent>
+
+		<article
+			class={cx(
+				"prose col-span-full mx-auto lg:mx-0 lg:col-[4/span_6] lg:max-w-full prose-foreground",
+				"prose-headings:scroll-m-20 prose-headings:font-medium prose-code:font-zed-mono",
+			)}
+		>
+			<render.Content />
+		</article>
+
+		<aside class="relative col-span-2 hidden pl-4 lg:block">
+			<div class="sticky top-[20vh]">
+				<h3 class="text-2xl font-medium">Table of contents</h3>
+				<ul>
+					{
+						render.headings.map((h) => (
+							<li>
+								<Link.Nav href={`#${h.slug}`} unstyled>
+									{h.text}
+								</Link.Nav>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</aside>
+	</Section.Root>
+</MainLayout>

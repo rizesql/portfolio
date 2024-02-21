@@ -1,31 +1,12 @@
 import type { CollectionEntry } from "astro:content";
-import { format } from "date-fns";
-import { Show, splitProps, type ComponentProps } from "solid-js";
+import { splitProps, type ComponentProps } from "solid-js";
 
+import { Interval } from "~/components/interval";
 import { Icon, Link, center, hstack, touchable, vstack } from "~/components/ui";
 import { cx } from "~/lib/cx";
-import { isPeriod, type Period } from "~/lib/period";
 
 export type WorkCardProps = ComponentProps<"article"> &
 	CollectionEntry<"experience">["data"] & { slug: string };
-// & {
-// name: string;
-// /**
-//  * Represents either a period between two dates in format `year-month`, or just a year.
-//  *
-//  * @example
-//  *
-//  * ```tsx
-//  * const period: Period = {
-//  *  start: new Date("2023-02"),
-//  *  end: new Date("2023-05")
-//  * };
-//  * const year: Period = 2023;
-//  * ```
-//  */
-// period: Period | number;
-// subtitle: string;
-// };
 
 export function WorkCard(props: WorkCardProps) {
 	const [local, other] = splitProps(props, [
@@ -65,30 +46,5 @@ export function WorkCard(props: WorkCardProps) {
 				/>
 			</Link.Nav>
 		</article>
-	);
-}
-
-function Interval(props: { period: Period | number }) {
-	return (
-		<Show
-			when={isPeriod(props.period) ? props.period : null}
-			fallback={
-				<time class="text-sm" datetime={`${props.period as number}`}>
-					{props.period as number}
-				</time>
-			}
-		>
-			{(period) => (
-				<span class={cx(hstack(), "gap-1 text-sm")}>
-					<time datetime={format(period().start, "yyyy-MM")}>
-						{format(period().start, "MM.yyyy")}
-					</time>
-					<span>-</span>
-					<time datetime={format(period().end, "yyyy-MM")}>
-						{format(period().end, "MM.yyyy")}
-					</time>
-				</span>
-			)}
-		</Show>
 	);
 }

@@ -1,6 +1,6 @@
 export * as Section from "./section";
 
-import { For, splitProps, type ComponentProps, type ParentProps } from "solid-js";
+import { For, Show, splitProps, type ComponentProps, type ParentProps } from "solid-js";
 
 import { Link } from "./link";
 import { touchable } from "./touchable";
@@ -20,14 +20,16 @@ export const section = {
 	}),
 };
 
-export function Root(props: ComponentProps<"section">) {
-	const [local, other] = splitProps(props, ["class"]);
+export function Root(props: ComponentProps<"section"> & { bottomSpacing?: boolean }) {
+	const [local, other] = splitProps(props, ["class", "bottomSpacing"]);
 
 	return (
 		<section class={section.root(local)} {...other}>
 			{props.children}
 
-			<div class="col-span-full hidden h-1 lg:block" />
+			<Show when={local.bottomSpacing ?? true}>
+				<div class="col-span-full hidden h-1 lg:block" />
+			</Show>
 		</section>
 	);
 }
@@ -53,15 +55,15 @@ export function SideContent(props: ComponentProps<"div">) {
 
 export function First(
 	props: ParentProps<{
-		header: { title: string; subtitle: string };
+		header: { name: string; subtitle: string };
 		links: ReadonlyArray<{ href: string; label: string }>;
 		class?: string;
 	}>,
 ) {
 	return (
-		<Root class={section.first({ class: props.class })}>
+		<Root bottomSpacing={false} class={section.first({ class: props.class })}>
 			<Header class="text-sm">
-				<h2>{props.header.title}</h2>
+				<h2>{props.header.name}</h2>
 				<p class="font-normal">{props.header.subtitle}</p>
 			</Header>
 
