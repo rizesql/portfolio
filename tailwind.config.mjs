@@ -9,6 +9,8 @@ export default {
 				"foreground-subtle": "var(--foreground-subtle)",
 				surface: "var(--surface)",
 				brand: "var(--brand)",
+				"writing-background": "var(--writing-background)",
+				"writing-foreground": "var(--writing-foreground)",
 			},
 			fontFamily: {
 				"overused-grotesk": "var(--font-overused-grotesk)",

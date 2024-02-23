@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+import ContentLayout from "~/layouts/content.astro";
+import { appInfo } from "~/lib/app-info";
+
+export const getStaticPaths = (async () => {
+	const articles = await getCollection("articles");
+	return articles.map((article) => ({
+		params: { topic: article.data.topic.id, article: article.slug },
+		props: { article },
+	}));
+}) satisfies GetStaticPaths;
+
+const { article } = Astro.props;
+---
+
+<ContentLayout
+	class="bg-writing-background text-writing-foreground"
+	links={[...appInfo.social, { href: "/rss", label: "RSS feed" }]}
+	content={{
+		name: "Writing",
+		subtitle: "Some thoughts",
+		description: article.data.description,
+	}}
+	render={await article.render()}
+>
+	<Fragment slot="header">
+		<h2>{article.data.name}</h2>
+		<p>{article.data.subtitle}</p>
+	</Fragment>
+</ContentLayout>
