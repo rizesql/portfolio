@@ -6,4 +6,4 @@ import ArticleLayout from "./_layout.astro";
 const articles = await getCollection("articles");
 ---
 
-<ArticleLayout articles={articles} header="All Articles" />
+<ArticleLayout seo={{ title: "Articles" }} articles={articles} header="All Articles" />

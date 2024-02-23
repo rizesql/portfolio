@@ -13,18 +13,19 @@ export const getStaticPaths = (async () => {
 	}));
 }) satisfies GetStaticPaths;
 
-const props = Astro.props;
+const { job } = Astro.props;
 ---
 
 <ContentLayout
-	content={props.job.data}
-	render={await props.job.render()}
+	seo={{ title: job.data.name, description: job.data.description }}
+	content={job.data}
+	render={await job.render()}
 	class="[--invert-nav:100]"
 >
 	<Fragment slot="header">
-		<h2>{props.job.data.name}</h2>
+		<h2>{job.data.name}</h2>
 		<span class="font-normal">
-			<Interval period={props.job.data.period} />
+			<Interval period={job.data.period} />
 		</span>
 	</Fragment>
 </ContentLayout>

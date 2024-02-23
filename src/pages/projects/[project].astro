@@ -25,6 +25,7 @@ const foreground =
 ---
 
 <ContentLayout
+	seo={{ title: project.data.name, description: project.data.description }}
 	content={project.data}
 	render={await project.render()}
 	style={{

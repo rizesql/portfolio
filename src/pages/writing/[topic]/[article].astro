@@ -17,6 +17,7 @@ const { article } = Astro.props;
 ---
 
 <ContentLayout
+	seo={{ title: article.data.name, description: article.data.description }}
 	class="bg-writing-background [--set-foreground:var(--writing-foreground)]"
 	links={[...appInfo.social, { href: "/rss", label: "RSS feed" }]}
 	content={{

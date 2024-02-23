@@ -19,4 +19,8 @@ const articles = await getCollection(
 );
 ---
 
-<ArticleLayout articles={articles} header={topic.data.name} />
+<ArticleLayout
+	seo={{ title: topic.data.name }}
+	articles={articles}
+	header={topic.data.name}
+/>
