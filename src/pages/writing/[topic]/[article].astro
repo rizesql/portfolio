@@ -17,7 +17,7 @@ const { article } = Astro.props;
 ---
 
 <ContentLayout
-	class="bg-writing-background text-writing-foreground"
+	class="bg-writing-background [--set-foreground:var(--writing-foreground)]"
 	links={[...appInfo.social, { href: "/rss", label: "RSS feed" }]}
 	content={{
 		name: "Writing",
