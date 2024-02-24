@@ -22,10 +22,16 @@ const foreground =
 	project.data.foreground === "dark" ? "var(--base-foreground)" : 
 	project.data.foreground === "light" ? "var(--base-background)" : 
 	project.data.foreground;
+
+const ogImage = new URL(`/api/og/${Astro.params.project}`, Astro.site);
 ---
 
 <ContentLayout
-	seo={{ title: project.data.name, description: project.data.description }}
+	seo={{
+		title: project.data.name,
+		description: project.data.subtitle,
+		ogImage: ogImage.toString(),
+	}}
 	content={project.data}
 	render={await project.render()}
 	style={{

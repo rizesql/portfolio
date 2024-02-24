@@ -14,10 +14,15 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { article } = Astro.props;
+const ogImage = new URL(`/api/og/${Astro.params.article}`, Astro.site);
 ---
 
 <ContentLayout
-	seo={{ title: article.data.name, description: article.data.description }}
+	seo={{
+		title: article.data.name,
+		description: article.data.description,
+		ogImage: ogImage.toString(),
+	}}
 	class="bg-writing-background [--set-foreground:var(--writing-foreground)]"
 	links={[...appInfo.social, { href: "/rss", label: "RSS feed" }]}
 	content={{

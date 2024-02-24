@@ -1,11 +1,11 @@
 ---
-import BaseLayout, { type Props as BaseProps } from "./base.astro";
+import BaseLayout from "./base.astro";
 
 import Navbar from "~/components/navbar.astro";
 import { main } from "~/components/ui";
 import { cx } from "~/lib/cx";
 
-export type Props = BaseProps;
+export type { Props } from "./base.astro";
 
 const { class: className, "class:list": classList, ...props } = Astro.props;
 ---

@@ -14,10 +14,16 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { job } = Astro.props;
+
+const ogImage = new URL(`/api/og/${Astro.params.slug}`, Astro.site);
 ---
 
 <ContentLayout
-	seo={{ title: job.data.name, description: job.data.description }}
+	seo={{
+		title: job.data.name,
+		description: job.data.subtitle,
+		ogImage: ogImage.toString(),
+	}}
 	content={job.data}
 	render={await job.render()}
 	class="[--invert-nav:100]"

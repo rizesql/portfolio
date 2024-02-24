@@ -1,13 +1,22 @@
 ---
+import { Image } from "astro:assets";
+
 import Projects from "./_index/sections/projects/index.astro";
 import Work from "./_index/sections/work/index.astro";
 
+import heroImg from "~/assets/hero.png";
 import { Section } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
 import { appInfo } from "~/lib/app-info";
 ---
 
-<MainLayout class="[--invert-nav:100]">
+<MainLayout
+	class="[--invert-nav:100]"
+	seo={{
+		description:
+			"I'm Ştefan, also known as @rizesql, a Bucharest-based technologist and internet enjoyer",
+	}}
+>
 	<Section.First
 		header={{ name: appInfo.title, subtitle: "Fullstack developer" }}
 		links={appInfo.social}
@@ -40,7 +49,12 @@ import { appInfo } from "~/lib/app-info";
 		<div
 			class="col-span-full overflow-hidden will-change-[opacity] motion-safe:animate-fade-in lg:h-screen"
 		>
-			<img src="/hero.png" alt="" />
+			<Image
+				src={heroImg}
+				widths={[240, 540, 720, heroImg.width]}
+				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${heroImg.width}px`}
+				alt=""
+			/>
 		</div>
 
 		<div class="col-span-full lg:col-[2/span_9]">

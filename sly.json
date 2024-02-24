@@ -3,7 +3,7 @@
   "libraries": [
     {
       "name": "@radix-ui/icons",
-      "directory": "./src/components/ui/icons",
+      "directory": "./src/assets/icons",
       "postinstall": ["pnpm", "run", "build:icons"],
       "transformers": ["./src/lib/sly/transform-icon.ts"]
     }

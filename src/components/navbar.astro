@@ -14,8 +14,10 @@ import { cx } from "~/lib/cx";
 	class="fixed right-0 top-0 z-10 pr-4 pt-4 mix-blend-exclusion invert-[var(--invert-nav)] lg:px-6"
 >
 	<ul class={cx(center(), "gap-4")}>
-		<Link.Nav href="/writing" unstyled class={cx(touchable(), center())}>
-			writing
-		</Link.Nav>
+		<li>
+			<Link.Nav href="/writing" unstyled class={cx(touchable(), center())}>
+				writing
+			</Link.Nav>
+		</li>
 	</ul>
 </nav>

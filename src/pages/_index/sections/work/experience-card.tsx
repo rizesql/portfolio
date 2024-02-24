@@ -39,6 +39,7 @@ export function WorkCard(props: WorkCardProps) {
 				href={`/work/${local.slug}`}
 				class={cx(hstack(), center(), touchable(), "group gap-2")}
 			>
+				<span class="sr-only">{local.name}</span>
 				<span>Read more</span>
 				<Icon
 					name="arrow-right"

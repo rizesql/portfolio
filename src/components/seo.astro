@@ -1,4 +1,5 @@
 ---
+import heroImg from "~/assets/hero.png";
 import { appInfo } from "~/lib/app-info";
 import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "~/lib/seo/og";
 
@@ -19,21 +20,37 @@ const title = rawTitle ? `${rawTitle} - ${appInfo.title}` : appInfo.title;
 const description = props.description ?? appInfo.description;
 const keywords = props.keywords ?? appInfo.keywords;
 
-const ogImage = props.ogImage ?? "";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const image = props.ogImage ?? heroImg.src;
 ---
+
+<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
 
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
-<meta name="twitter:card" content="summary_large_image" />
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
 
-<meta name="og:type" content="website" />
-<meta name="og:title" content={title} />
-<meta name="og:description" content={description} />
-<meta name="og:image" content={ogImage} />
-<meta name="og:image:width" content={`${OG_IMAGE_WIDTH}`} />
-<meta name="og:image:height" content={`${OG_IMAGE_HEIGHT}`} />
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image:width" content={`${OG_IMAGE_WIDTH}`} />
+<meta property="og:image:height" content={`${OG_IMAGE_HEIGHT}`} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
