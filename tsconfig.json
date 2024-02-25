@@ -4,7 +4,7 @@
     "skipLibCheck": true,
     "baseUrl": "/Users/rizesql/projects/for-portfolio/portfolio",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
     "jsx": "preserve",
     "jsxImportSource": "solid-js"
