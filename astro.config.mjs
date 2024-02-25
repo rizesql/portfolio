@@ -9,7 +9,7 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
 	prefetch: true,
-	site: "http://localhost:4321",
+	site: "https://rizesql.pages.dev/",
 	integrations: [
 		tailwind(),
 		solidJs(),
