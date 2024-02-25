@@ -1,8 +1,7 @@
 import { defineCollection, z } from "astro:content";
 
+import { period } from "../../lib/period";
 import { content } from "../base-content";
-
-import { period } from "~/lib/period";
 
 const schema = content.extend({
 	/**
