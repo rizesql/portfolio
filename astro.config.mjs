@@ -35,10 +35,10 @@ export default defineConfig({
 		// 	},
 		// }),
 		playformInline(),
-		playformCompress({
-			Image: false,
-			CSS: false,
-		}),
+		// playformCompress({
+		// 	Image: false,
+		// 	CSS: false,
+		// }),
 		compressor(),
 	],
 
