@@ -3,7 +3,13 @@
   "libraries": [
     {
       "name": "@radix-ui/icons",
-      "directory": "./src/assets/icons",
+      "directory": "./src/assets/icons/generated",
+      "postinstall": ["pnpm", "run", "build:icons"],
+      "transformers": ["./src/lib/sly/transform-icon.ts"]
+    },
+    {
+      "name": "lucide-icons",
+      "directory": "./src/assets/icons/generated",
       "postinstall": ["pnpm", "run", "build:icons"],
       "transformers": ["./src/lib/sly/transform-icon.ts"]
     }

@@ -1,5 +1,5 @@
 ---
-import heroImg from "~/assets/hero.png";
+import heroImg from "~/assets/heroc.jpg";
 import { appInfo } from "~/lib/app-info";
 import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "~/lib/seo/og";
 
@@ -25,7 +25,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const image = props.ogImage ?? heroImg.src;
 ---
 
-<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 
 <title>{title}</title>
 <meta name="description" content={description} />

@@ -26,7 +26,7 @@ export const separator = cva({
 });
 
 export function Separator(
-	props: BaseSeparator.SeparatorRootProps & VariantProps<typeof separator>,
+	props: typeof BaseSeparator.SeparatorRootProps & VariantProps<typeof separator>,
 ) {
 	const [local, other] = splitProps(props, ["class", "orientation", "fullScreen"]);
 	return <BaseSeparator.Root class={separator(local)} {...other} />;

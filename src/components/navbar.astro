@@ -1,22 +1,22 @@
 ---
 import { Logo } from "./logo";
-import { Link, center, touchable } from "./ui";
+import { Icon, Link, center, touchable } from "./ui";
 
 import { cx } from "~/lib/cx";
+
+const styles = cx`fixed top-0 z-10 pt-4 mix-blend-exclusion invert-[var(--invert-nav)] lg:px-6`;
 ---
 
-<div
-	class="fixed left-0 top-0 z-10 pl-4 pt-4 mix-blend-exclusion invert-[var(--invert-nav)] lg:px-6"
->
+<div class={cx`${styles} left-0 pl-4`}>
 	<Logo />
 </div>
-<nav
-	class="fixed right-0 top-0 z-10 pr-4 pt-4 mix-blend-exclusion invert-[var(--invert-nav)] lg:px-6"
->
-	<ul class={cx(center(), "gap-4")}>
+
+<nav class={cx`${styles} right-0 pr-4`}>
+	<ul class={cx`${center()} "gap-4"`}>
 		<li>
-			<Link.Nav href="/writing" unstyled class={cx(touchable(), center())}>
-				writing
+			<Link.Nav href="/writing" unstyled class={cx`${touchable()} ${center()} gap-1`}>
+				Writing
+				<Icon name="rss" />
 			</Link.Nav>
 		</li>
 	</ul>

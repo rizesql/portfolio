@@ -1,4 +1,4 @@
-export * from "./icons";
+export * from "./icons/icons";
 export * from "./layout";
 export * from "./link";
 export * from "./section";

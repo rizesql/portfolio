@@ -1,6 +1,5 @@
 ---
-import { type HTMLAttributes } from "astro/types";
-import { ViewTransitions } from "astro:transitions";
+import type { HTMLAttributes } from "astro/types";
 
 import type { SEOProps } from "~/components/seo.astro";
 import Seo from "~/components/seo.astro";
@@ -42,7 +41,11 @@ const {
 			crossorigin
 		/>
 
-		<ViewTransitions />
+		<style>
+			@view-transition {
+				navigation: auto;
+			}
+		</style>
 	</head>
 
 	<body class="h-screen">

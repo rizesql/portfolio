@@ -2,12 +2,12 @@
 	"name": "Stefan Rizescu",
 	"short_name": "rizesql",
 	"icons": [
-		{ "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-		{ "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
+		{ "src": "/logo.svg", "sizes": "192x192", "type": "image/svg+xml" },
+		{ "src": "/logo.svg", "sizes": "512x512", "type": "image/svg+xml" },
 		{
-			"src": "/maskable_icon_x192.png",
+			"src": "/logo.svg",
 			"sizes": "192x192",
-			"type": "image/png",
+			"type": "image/svg+xml",
 			"purpose": "maskable"
 		}
 	],

@@ -1,10 +1,9 @@
 ---
-import { Image } from "astro:assets";
-
+import { Picture } from "astro:assets";
 import Projects from "./_index/sections/projects/index.astro";
 import Work from "./_index/sections/work/index.astro";
 
-import heroImg from "~/assets/hero.png";
+import heroImg from "~/assets/heroc.jpg";
 import { Section } from "~/components/ui";
 import MainLayout from "~/layouts/main.astro";
 import { appInfo } from "~/lib/app-info";
@@ -49,11 +48,13 @@ import { appInfo } from "~/lib/app-info";
 		<div
 			class="col-span-full overflow-hidden will-change-[opacity] motion-safe:animate-fade-in lg:h-screen"
 		>
-			<Image
+			<Picture
 				src={heroImg}
-				widths={[240, 540, 720, heroImg.width]}
-				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${heroImg.width}px`}
 				alt=""
+				widths={[240, 540, 720, 960, 1024, heroImg.width]}
+				formats={["avif", "webp"]}
+				loading="eager"
+				style="height: 100%; width: 100%; object-fit: cover;"
 			/>
 		</div>
 

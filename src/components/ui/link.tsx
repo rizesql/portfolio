@@ -3,7 +3,7 @@ export * as Link from "./link";
 import { Link as BaseLink } from "@kobalte/core";
 import { splitProps } from "solid-js";
 
-import { Icon } from "./icons";
+import { Icon } from "./icons/icons";
 import { hstack } from "./layout";
 
 import { cva, extend } from "~/lib/cx";
@@ -38,7 +38,7 @@ export const link = {
 	},
 } as const;
 
-export function Nav(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
+export function Nav(props: typeof BaseLink.LinkRootProps & { unstyled?: boolean }) {
 	const [local, others] = splitProps(props, ["class", "unstyled"]);
 
 	return (
@@ -48,7 +48,7 @@ export function Nav(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
 	);
 }
 
-export function External(props: BaseLink.LinkRootProps & { unstyled?: boolean }) {
+export function External(props: typeof BaseLink.LinkRootProps & { unstyled?: boolean }) {
 	const [local, others] = splitProps(props, ["class", "unstyled"]);
 
 	return (

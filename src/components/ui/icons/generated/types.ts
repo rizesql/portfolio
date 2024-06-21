@@ -3,3 +3,4 @@
 export type Icon =
 	| "arrow-right"
 	| "arrow-top-right"
+	| "rss"
