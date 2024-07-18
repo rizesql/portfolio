@@ -14,6 +14,9 @@ export default defineConfig({
 	prefetch: true,
 	site: "https://rizesql.pages.dev",
 	// site: "http://localhost:4321",
+	image: {
+		service: { entrypoint: "astro/assets/services/sharp" },
+	},
 	integrations: [
 		tailwind({
 			applyBaseStyles: false,
