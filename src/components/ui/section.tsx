@@ -16,7 +16,7 @@ export const section = {
 		base: "top-5 col-start-1 h-min items-end font-medium mix-blend-exclusion invert-[var(--invert-nav)] lg:sticky lg:col-[4/span_2]",
 	}),
 	sideContent: cva({
-		base: "col-span-full col-start-2 text-balance text-4xl font-medium lg:col-start-7",
+		base: "col-span-full col-start-2 text-balance text-3xl lg:col-start-7",
 	}),
 };
 

@@ -5,7 +5,7 @@ import { Interval } from "~/components/interval";
 import { Icon, Link, center, hstack, touchable, vstack } from "~/components/ui";
 import { cx } from "~/lib/cx";
 
-export type WorkCardProps = ComponentProps<"article"> &
+type WorkCardProps = ComponentProps<"article"> &
 	CollectionEntry<"experience">["data"] & { slug: string };
 
 export function WorkCard(props: WorkCardProps) {

@@ -24,5 +24,3 @@ export const experience = defineCollection({
 	type: "content",
 	schema,
 });
-
-export type Experience = z.infer<typeof schema>;
