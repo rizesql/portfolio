@@ -2,13 +2,12 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
-import playformCompress from "@playform/compress";
 import playformInline from "@playform/inline";
 import metaTags from "astro-meta-tags";
-import svgSprite from "astro-svg-sprite";
 import { defineConfig } from "astro/config";
-
+import { transformerNotationHighlight } from "@shikijs/transformers";
 import compressor from "astro-compressor";
+import { transformerTwoslash } from "@shikijs/twoslash";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,22 +22,13 @@ export default defineConfig({
 		mdx({
 			syntaxHighlight: "shiki",
 			shikiConfig: {
-				theme: "catppuccin-mocha",
+				theme: "catppuccin-macchiato",
+				transformers: [transformerNotationHighlight(), transformerTwoslash()],
 			},
 		}),
 		sitemap(),
 		metaTags(),
-		// svgSprite({
-		// 	include: "./src/assets/icons",
-		// 	emitFile: {
-		// 		compress: "best",
-		// 	},
-		// }),
 		playformInline(),
-		// playformCompress({
-		// 	Image: false,
-		// 	CSS: false,
-		// }),
 		compressor(),
 	],
 
