@@ -16,7 +16,7 @@ export const section = {
 		base: "top-5 col-start-1 h-min items-end font-medium mix-blend-exclusion invert-[var(--invert-nav)] lg:sticky lg:col-[4/span_2]",
 	}),
 	sideContent: cva({
-		base: "col-span-full col-start-2 text-balance text-3xl lg:col-start-7",
+		base: "col-span-full col-start-2 text-balance text-3xl lg:col-start-7 font-medium",
 	}),
 };
 
@@ -37,7 +37,10 @@ export function Root(props: ComponentProps<"section"> & { bottomSpacing?: boolea
 export function Header(props: ComponentProps<"header">) {
 	const [local, other] = splitProps(props, ["class"]);
 	return (
-		<header class={section.header(local)} {...other}>
+		<header
+			class="top-5 col-start-1 h-min items-end font-medium mix-blend-exclusion invert-[var(--invert-nav)] lg:sticky lg:col-[4/span_2]"
+			{...other}
+		>
 			{props.children}
 		</header>
 	);

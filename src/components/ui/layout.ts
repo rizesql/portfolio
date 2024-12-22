@@ -97,7 +97,7 @@ export const hstack = compose(
 export const vstack = compose(stack, cva({ base: "flex-col" }));
 
 export const main = cva({
-	base: "grid gap-x-4 gap-y-32 pt-4 md:grid-cols-4 lg:grid-cols-12",
+	base: "grid gap-x-4 gap-y-32 pt-4 md:grid-cols-4 lg:grid-cols-12 max-w-screen-2xl xl:mx-auto",
 });
 
 export const subgrid = cva({

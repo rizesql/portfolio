@@ -6,7 +6,7 @@ import { Icon, Link, center, hstack, touchable, vstack } from "~/components/ui";
 import { cx } from "~/lib/cx";
 
 type WorkCardProps = ComponentProps<"article"> &
-	CollectionEntry<"experience">["data"] & { slug: string };
+	CollectionEntry<"experience">["data"] & { id: string };
 
 export function WorkCard(props: WorkCardProps) {
 	const [local, other] = splitProps(props, [
@@ -14,11 +14,17 @@ export function WorkCard(props: WorkCardProps) {
 		"period",
 		"subtitle",
 		"class",
-		"slug",
+		"id",
 	]);
 
 	return (
-		<article class={cx(vstack(), "gap-2 py-2 lg:py-0", local.class)} {...other}>
+		<article
+			class={cx(
+				vstack(),
+				"gap-2 py-2 lg:py-0 lg:grid lg:grid-rows-subgrid lg:row-span-full",
+			)}
+			{...other}
+		>
 			<div
 				class={cx(
 					hstack({
@@ -36,8 +42,8 @@ export function WorkCard(props: WorkCardProps) {
 			<p class="text-balance">{local.subtitle}</p>
 
 			<Link.Nav
-				href={`/work/${local.slug}`}
-				class={cx(hstack(), center(), touchable(), "group gap-2")}
+				href={`/work/${local.id}`}
+				class={cx(hstack(), center(), touchable(), "group gap-2 justify-end")}
 			>
 				<span class="sr-only">{local.name}</span>
 				<span>Read more</span>

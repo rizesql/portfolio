@@ -1,9 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
 
-import { Project } from "./project";
-
-import { Section, subgrid } from "~/components/ui";
+import { Section, subgrid, Link } from "~/components/ui";
 import { cx } from "~/lib/cx";
 import { sort } from "~/lib/sort";
 
@@ -29,15 +28,28 @@ const layout = [
 		my work and ideas I want to bring to life.
 	</Section.SideContent>
 
-	<div class={cx(subgrid(), "min-h-screen gap-x-8 gap-y-8")}>
+	<div class={cx(subgrid(), "min-h-screen gap-x-8 gap-y-8 grid-rows-6")}>
 		{
 			projects.map((project, idx) => (
-				<Project
-					name={project.data.name}
-					class={layout[idx]}
-					color={project.data.color}
-					href={`/projects/${project.slug}`}
-				/>
+				<article class={cx(layout[idx], "max-h-[40vh]")}>
+					<h2 class="text-2xl font-medium">
+						<Link.Nav href={`/projects/${project.id}`} unstyled>
+							{project.data.name}
+						</Link.Nav>
+					</h2>
+					<div class="h-full" style={{ background: project.data.color }}>
+						{project.data.image ? (
+							<Picture
+								src={project.data.image}
+								alt=""
+								widths={[240, 540, 720, 960, 1024, project.data.image.width]}
+								formats={["avif", "webp"]}
+								loading="lazy"
+								class="size-full object-cover object-center"
+							/>
+						) : null}
+					</div>
+				</article>
 			))
 		}
 	</div>

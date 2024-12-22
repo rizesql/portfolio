@@ -3,17 +3,32 @@ import { getCollection } from "astro:content";
 
 import { WorkCard } from "./experience-card";
 
-import { Separator } from "~/components/ui";
 import { sort } from "~/lib/sort";
 
 const priorExperience = await getCollection("experience").then(sort.dataByPeriod);
 ---
 
-<div class="col-[3/span_2] grid gap-8 lg:col-[7/span_5] lg:grid-cols-2">
-	<div class="col-span-full w-full md:hidden">
-		<div class="text-base font-medium">Experience</div>
-		<Separator fullScreen />
+<div class="col-[3/-1] grid gap-8 lg:col-[4/-1]">
+	<div class="work-cards lg:grid-cols-4">
+		{priorExperience.map((job) => <WorkCard id={job.id} {...job.data} />)}
+		<WorkCard
+			id="writing"
+			name="Who knows?"
+			subtitle="Who knows what's next for me? Guess we'll find out sometime"
+			period="Future"
+		/>
 	</div>
-
-	{priorExperience.map((job) => <WorkCard slug={job.slug} {...job.data} />)}
 </div>
+
+<style>
+	.work-cards {
+		display: grid;
+		grid-column: 1 / -1;
+		gap: 2rem;
+
+		@media (min-width: 1024px) {
+			grid-template-rows: 3rem 1fr 1.5rem;
+			grid-auto-flow: row;
+		}
+	}
+</style>

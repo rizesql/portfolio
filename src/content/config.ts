@@ -11,6 +11,7 @@ export const collections = {
 	projects,
 	focus: defineCollection({
 		type: "data",
+		// loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/focus" }),
 		schema: z.object({
 			focus: z.array(z.string()),
 		}),

@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 import ContentLayout from "~/layouts/content.astro";
 
@@ -9,7 +9,7 @@ export const getStaticPaths = (async () => {
 
 	return projects.map((project) => {
 		return {
-			params: { project: project.slug },
+			params: { project: project.id },
 			props: { project },
 		};
 	});
@@ -18,9 +18,9 @@ export const getStaticPaths = (async () => {
 const { project } = Astro.props;
 
 // prettier-ignore
-const foreground = 
-	project.data.foreground === "dark" ? "var(--base-foreground)" : 
-	project.data.foreground === "light" ? "var(--base-background)" : 
+const foreground =
+	project.data.foreground === "dark" ? "var(--base-foreground)" :
+	project.data.foreground === "light" ? "var(--base-background)" :
 	project.data.foreground;
 
 const ogImage = new URL(`/api/og/${Astro.params.project}`, Astro.site);
@@ -33,7 +33,7 @@ const ogImage = new URL(`/api/og/${Astro.params.project}`, Astro.site);
 		ogImage: ogImage.toString(),
 	}}
 	content={project.data}
-	render={await project.render()}
+	render={await render(project)}
 	style={{
 		"--set-background": project.data.color,
 		"--set-foreground": foreground,

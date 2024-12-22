@@ -15,20 +15,15 @@ type CollectionData = Pick<CollectionEntry<Collection>, "data" | "collection">;
 export const getStaticPaths = (async () => {
 	const data = await Promise.all(collections.map((col) => getCollection(col)));
 
-	return (
-		data
-			.flatMap((d) => d)
-			// .reduce((curr, acc) => [...acc, ...curr], [])
-			.map((entry) => ({
-				params: { id: entry.slug },
-				props: {
-					id: entry.id,
-					slug: entry.slug,
-					data: entry.data,
-					collection: entry.collection,
-				},
-			}))
-	);
+	return data.flat().map((entry) => ({
+		params: { id: entry.id },
+		props: {
+			id: entry.id,
+			slug: entry.id,
+			data: entry.data,
+			collection: entry.collection,
+		},
+	}));
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;

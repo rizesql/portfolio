@@ -8,7 +8,7 @@ import ContentLayout from "~/layouts/content.astro";
 export const getStaticPaths = (async () => {
 	const priorExperience = await getCollection("experience");
 	return priorExperience.map((job) => ({
-		params: { slug: job.slug },
+		params: { slug: job.id },
 		props: { job },
 	}));
 }) satisfies GetStaticPaths;

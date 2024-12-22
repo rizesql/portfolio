@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 
-import { Separator, vstack } from "~/components/ui";
+import { vstack } from "~/components/ui";
 import { cx } from "~/lib/cx";
 
 const focus = await getEntry("focus", "focus");
@@ -15,7 +15,6 @@ const focus = await getEntry("focus", "focus");
 >
 	<header class="w-full md:hidden">
 		<h2 class="text-base font-medium">Focus</h2>
-		<Separator fullScreen />
 	</header>
 
 	<ul class="first:mt-6 first:lg:mt-0">

@@ -9,7 +9,6 @@ import { transformerNotationHighlight } from "@shikijs/transformers";
 import compressor from "astro-compressor";
 import { transformerTwoslash } from "@shikijs/twoslash";
 
-// https://astro.build/config
 export default defineConfig({
 	prefetch: true,
 	site: "https://rizesql.pages.dev",
@@ -17,6 +16,7 @@ export default defineConfig({
 	image: {
 		service: { entrypoint: "astro/assets/services/sharp" },
 	},
+	redirects: { "/work/writing": "/writing" },
 	integrations: [
 		tailwind({
 			applyBaseStyles: false,

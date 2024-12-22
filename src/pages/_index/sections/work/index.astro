@@ -1,8 +1,7 @@
 ---
 import Experience from "./experience.astro";
-import Focus from "./focus.astro";
 
-import { Section, Separator, subgrid, vstack } from "~/components/ui";
+import { Section, vstack } from "~/components/ui";
 import { cx } from "~/lib/cx";
 ---
 
@@ -12,31 +11,12 @@ import { cx } from "~/lib/cx";
 	</Section.Header>
 
 	<Section.SideContent class={cx(vstack(), "gap-8 text-3xl text-balance")}>
-		<h2 class="">
+		<h2>
 			In my work, I focus on making fast, reliable and correct applications. My goal is to
 			make great software that anyone can enjoy. I strive to create some unique web
 			experiences and extend my technical knowledge project by project.
 		</h2>
 	</Section.SideContent>
 
-	<div class="col-span-full lg:col-[2/-2]">
-		<p class="text-balance text-3xl">
-			My fields of interest consist of web applications, server-side rendering, backend
-			development, distributed systems, asynchronous messaging. More general, any
-			technical notion that can make me deliver a better experience.
-		</p>
-	</div>
-
-	<section class={cx(subgrid())}>
-		<header class={"relative col-span-full hidden grid-cols-subgrid md:grid"}>
-			<div class="hidden h-14 w-full lg:col-[1/span_1] lg:block"></div>
-			<h3 class="col-[1/span_2] lg:col-[2/span_5] font-medium">Focus</h3>
-			<h3 class="col-[3/span_2] lg:col-[7/span_5] font-medium">Experience</h3>
-			<Separator class="lg:col-start-1" fullScreen />
-		</header>
-
-		<Focus />
-
-		<Experience />
-	</section>
+	<Experience />
 </Section.Root>

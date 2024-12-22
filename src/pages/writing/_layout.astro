@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, getEntry } from "astro:content";
+import { EncryptedText } from "~/components/encrypted-text";
 
 import { Link, Section, hstack, vstack } from "~/components/ui";
 import MainLayout, { type Props as MainProps } from "~/layouts/main.astro";
@@ -53,16 +54,22 @@ const description =
 			</ul>
 		</aside>
 
-		<Section.SideContent>{description}</Section.SideContent>
+		<Section.SideContent>
+			<div class="font-zed-mono text-xl">
+				$ <EncryptedText client:load id="eyebrow" text="Welcome to my blog" />
+			</div>
+			<p>
+				{description}
+			</p>
+		</Section.SideContent>
 	</Section.First>
 
 	<Section.Root>
 		<Section.Header><h2>{header}</h2></Section.Header>
-
 		{
 			articles.map((article) => (
 				<Link.Nav
-					href={`/writing/${article.data.topic.id}/${article.slug}`}
+					href={`/writing/${article.data.topic.id}/${article.id}`}
 					class="col-[4/span_5]"
 					unstyled
 				>
@@ -82,3 +89,31 @@ const description =
 		}
 	</Section.Root>
 </MainLayout>
+
+<style>
+	#eyebrow[data-part="encrypted-text"] {
+		position: relative;
+
+		&::after {
+			content: "_";
+			position: absolute;
+			right: -15px;
+			opacity: 0;
+
+			animation: blink 1s step-end infinite;
+			animation-delay: 2s;
+		}
+	}
+
+	@keyframes blink {
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+</style>

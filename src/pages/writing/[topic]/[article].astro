@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
+import { EncryptedText } from "~/components/encrypted-text";
 
 import ContentLayout from "~/layouts/content.astro";
 import { appInfo } from "~/lib/app-info";
@@ -8,7 +9,7 @@ import { appInfo } from "~/lib/app-info";
 export const getStaticPaths = (async () => {
 	const articles = await getCollection("articles");
 	return articles.map((article) => ({
-		params: { topic: article.data.topic.id, article: article.slug },
+		params: { topic: article.data.topic.id, article: article.id },
 		props: { article },
 	}));
 }) satisfies GetStaticPaths;
@@ -33,7 +34,9 @@ const ogImage = new URL(`/api/og/${Astro.params.article}`, Astro.site);
 	render={await article.render()}
 >
 	<Fragment slot="header">
-		<h2>{article.data.name}</h2>
-		<p>{article.data.subtitle}</p>
+		<h2 class="font-zed-mono">
+			~/<EncryptedText client:load text={`writing/${article.id}`} />
+		</h2>
+		<p>{article.data.topic.id}</p>
 	</Fragment>
 </ContentLayout>

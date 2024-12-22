@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strictest",
+  "extends": ["astro/tsconfigs/strictest"],
   "compilerOptions": {
     "skipLibCheck": true,
     "baseUrl": ".",
@@ -10,5 +10,5 @@
     "jsxImportSource": "solid-js"
   },
   "exclude": ["node_modules", "dist", ".wrangler"],
-  "include": ["**/*", ".eslintrc"]
+  "include": ["**/*", ".eslintrc", ".astro/types.d.ts"]
 }
